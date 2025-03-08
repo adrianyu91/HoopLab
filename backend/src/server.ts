@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
-import workoutRoutes from './routes/workouts';
 
 // Load environment variables
 dotenv.config();
@@ -22,6 +21,7 @@ const dynamoClient = new DynamoDBClient({
 
 const docClient = DynamoDBDocumentClient.from(dynamoClient); 
 
+app.use(cors());
 
 // 🏀 Test Route: Check if the server is running
 app.get("/", (req: Request, res: Response) => {
@@ -40,7 +40,17 @@ app.get("/dynamodb-data", async (req: Request, res: Response) => {
   }
 });
 
-app.use('/api', workoutRoutes);
+app.get("/workouts", async (req: Request, res: Response) => {
+  console.log("Fetch is working for /workouts")
+  try {
+    const command = new ScanCommand({ TableName: process.env.DYNAMODB_TABLE! });
+    const response = await docClient.send(command);
+    res.json(response.Items); // Return the fetched items
+  } catch (error) {
+    console.error("❌ Error fetching data from DynamoDB:", error);
+    res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {
