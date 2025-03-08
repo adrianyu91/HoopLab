@@ -44,8 +44,7 @@ app.get("/dynamodb-data", async (req: Request, res: Response) => {
 app.get("/workouts", async (req: Request, res: Response) => {
   console.log("Fetch is working for /workouts")
   const command = new ScanCommand({ 
-    TableName: process.env.DYNAMODB_TABLE!,
-    ProjectionExpression: "workoutid, workoutName, reps"
+    TableName: process.env.DYNAMODB_TABLE!
    });
   try {
     
