@@ -2,13 +2,14 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand} from "@aws-sdk/lib-dynamodb";
+import { workerData } from "worker_threads";
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Initialize DynamoDB Client
 const dynamoClient = new DynamoDBClient({
@@ -21,6 +22,7 @@ const dynamoClient = new DynamoDBClient({
 
 const docClient = DynamoDBDocumentClient.from(dynamoClient); 
 
+app.use(cors());
 
 // 🏀 Test Route: Check if the server is running
 app.get("/", (req: Request, res: Response) => {
@@ -31,6 +33,21 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/dynamodb-data", async (req: Request, res: Response) => {
   try {
     const command = new ScanCommand({ TableName: process.env.DYNAMODB_TABLE! });
+    const response = await docClient.send(command);
+    res.json(response.Items); // Return the fetched items
+  } catch (error) {
+    console.error("❌ Error fetching data from DynamoDB:", error);
+    res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
+
+app.get("/workouts", async (req: Request, res: Response) => {
+  console.log("Fetch is working for /workouts")
+  const command = new ScanCommand({ 
+    TableName: process.env.DYNAMODB_TABLE!
+   });
+  try {
+    
     const response = await docClient.send(command);
     res.json(response.Items); // Return the fetched items
   } catch (error) {
