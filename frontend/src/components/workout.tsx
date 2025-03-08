@@ -22,7 +22,7 @@ const Workout: React.FC = () => {
       <h2>Workouts</h2>
       <ul>
         {workouts.map((workout: any) => (
-          <li key={workout.workoutid}>{workout.name} - {workout.reps} reps</li>
+          <li key={workout.workoutID}>{workout.workoutName} - {workout.reps} reps</li>
         ))}
       </ul>
     </div>

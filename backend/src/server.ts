@@ -2,7 +2,8 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand} from "@aws-sdk/lib-dynamodb";
+import { workerData } from "worker_threads";
 
 // Load environment variables
 dotenv.config();
@@ -42,8 +43,12 @@ app.get("/dynamodb-data", async (req: Request, res: Response) => {
 
 app.get("/workouts", async (req: Request, res: Response) => {
   console.log("Fetch is working for /workouts")
+  const command = new ScanCommand({ 
+    TableName: process.env.DYNAMODB_TABLE!,
+    ProjectionExpression: "workoutid, workoutName, reps"
+   });
   try {
-    const command = new ScanCommand({ TableName: process.env.DYNAMODB_TABLE! });
+    
     const response = await docClient.send(command);
     res.json(response.Items); // Return the fetched items
   } catch (error) {
