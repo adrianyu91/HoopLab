@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface DropdownProps {
   options: string[];
@@ -7,51 +7,40 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, label, onSelect }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = React.useState<string[]>([]);
 
-  // Toggle dropdown visibility
-  const toggleDropdown = () => setIsOpen((prev) => !prev);
+  const handleCheckboxChange = (option: string) => {
+    let updatedOptions;
+    if (selectedOptions.includes(option)) {
+      // Remove if already selected
+      updatedOptions = selectedOptions.filter(item => item !== option);
+    } else {
+      // Add if not selected
+      updatedOptions = [...selectedOptions, option];
+    }
+    setSelectedOptions(updatedOptions);
+    onSelect(updatedOptions);
+  };
 
-  // Handle option selection
-  const handleOptionSelect = (option: string) => {
-    setSelectedOptions((prev) => {
-      let newSelection;
-      if (prev.includes(option)) {
-        // Remove if already selected
-        newSelection = prev.filter((item) => item !== option);
-      } else {
-        // Add if not selected
-        newSelection = [...prev, option];
-      }
-      onSelect(newSelection); // Notify parent component
-      return newSelection;
-    });
+  // Capitalize the first letter of the text
+  const capitalize = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   };
 
   return (
     <div style={{ marginBottom: '10px' }}>
-      <button onClick={toggleDropdown}>
-        {selectedOptions.length > 0 ? selectedOptions.join(', ') : label}
-      </button>
-
-      {isOpen && (
-        <ul style={{ listStyle: 'none', padding: '5px', border: '1px solid #ccc' }}>
-          {options.map((option, index) => (
-            <li
-              key={index}
-              onClick={() => handleOptionSelect(option)}
-              style={{
-                padding: '5px',
-                cursor: 'pointer',
-                backgroundColor: selectedOptions.includes(option) ? '#ddd' : '#fff',
-              }}
-            >
-              {selectedOptions.includes(option) ? '✅ ' : ''} {option}
-            </li>
-          ))}
-        </ul>
-      )}
+      <h4>{label}</h4>
+      {options.map((option, index) => (
+        <div key={index}>
+          <input
+            type="checkbox"
+            checked={selectedOptions.includes(option)}
+            onChange={() => handleCheckboxChange(option)}
+          />
+          <label style={{ marginLeft: '5px' }}></label>
+            {capitalize(option)}
+        </div>
+      ))}
     </div>
   );
 };
