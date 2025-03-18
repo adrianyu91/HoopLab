@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { Burger, Container, Group, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Logo from './Logo.png';
-import classes from './header.module.css';
-
+import classes from './styles/header.module.css';
 import { useAuth } from 'react-oidc-context';
 import LogButton from './logbutton';
 
