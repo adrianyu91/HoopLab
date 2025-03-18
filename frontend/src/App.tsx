@@ -3,6 +3,7 @@ import '@mantine/core/styles.css';
 import Header from './components/header';
 import Workout from './pages/workout';
 import Profile from './pages/profile';
+import Contact from './pages/contact';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/workout" element={<Workout />} />
             <Route path="/user/:username" element={<Profile />} />
+            <Route path="/contact" element={<Contact />} />
             {/* Add other routes here */}
           </Routes>
         </div>
