@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Dropdown from '../components/dropdown';
+import Select from '../components/multiselect';
 
 const Workout: React.FC = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -40,16 +40,17 @@ const Workout: React.FC = () => {
     <div>
       <h2>Workouts</h2>
 
-      <Dropdown
-        options={['Beginner', 'Intermediate', 'Advanced', 'Professional']}
-        label="Select Level"
-        onSelect={(level) => setSelectedLevel(level)}
+      <Select 
+        options = {['Beginner', 'Intermediate', 'Advanced', 'Professional']}
+        label = "Select Levels"
+        placeholder = "Click here to select levels"
+        onChange={(level) => setSelectedLevel(level)}
       />
-      
-      <Dropdown
-        options={['Dribbling', 'Shooting', 'Finishing', 'Passing']}
-        label="Select Category"
-        onSelect={(category) => setSelectedCategory(category)}
+      <Select
+        options = {['Dribbling', 'Shooting', 'Finishing', 'Passing']}
+        label = "Select Catoegories"
+        placeholder = "Click here to select categories"
+        onChange={(category) => setSelectedCategory(category)}
       />
       <h3>Filtered Workouts</h3>
       <ul>
