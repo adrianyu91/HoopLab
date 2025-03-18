@@ -48,7 +48,7 @@ const Workout: React.FC = () => {
       />
       <Select
         options = {['Dribbling', 'Shooting', 'Finishing', 'Passing']}
-        label = "Select Catoegories"
+        label = "Select Categories"
         placeholder = "Click here to select categories"
         onChange={(category) => setSelectedCategory(category)}
       />
