@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from '../components/multiselect';
 import TableSelection from '../components/table';
+import {Group} from '@mantine/core';
 
 const Workout: React.FC = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -40,39 +41,22 @@ const Workout: React.FC = () => {
   return (
     <div>
       <h2>Workouts</h2>
-
-      <Select 
-        options = {['Beginner', 'Intermediate', 'Advanced', 'Professional']}
-        label = "Select Levels"
-        placeholder = "Click here to select levels"
-        onChange={(level) => setSelectedLevel(level)}
-      />
-      <Select
-        options = {['Dribbling', 'Shooting', 'Finishing', 'Passing']}
-        label = "Select Categories"
-        placeholder = "Click here to select categories"
-        onChange={(category) => setSelectedCategory(category)}
-      />
-      
+      <Group>
+        <Select 
+          options = {['Beginner', 'Intermediate', 'Advanced', 'Professional']}
+          label = "Select Levels"
+          placeholder = "Click here to select levels"
+          onChange={(level) => setSelectedLevel(level)}
+        />
+        <Select
+          options = {['Dribbling', 'Shooting', 'Finishing', 'Passing']}
+          label = "Select Categories"
+          placeholder = "Click here to select categories"
+          onChange={(category) => setSelectedCategory(category)}
+        />
+      </Group>
       <h3>Our Workouts</h3>
-      <TableSelection data={workouts} />
-      <ul>
-        {filteredWorkouts.map((workout: any) => (
-          <li key={workout.workoutID}>
-            <strong>{workout.workoutName}</strong> - {workout.sets} x {workout.reps} reps
-            <br />
-            Level: {workout.level as keyof typeof levelMap}
-            <br />
-            Category: {workout.category}
-            <br />
-            Description: {workout.description}
-            <br />
-            <a href={workout.videoURL} target="_blank" rel="noopener noreferrer">
-              Watch Video
-            </a>
-          </li>
-        ))}
-      </ul>
+      <TableSelection data={filteredWorkouts} />
       
     </div>
   );
