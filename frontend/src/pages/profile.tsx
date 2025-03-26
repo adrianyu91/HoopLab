@@ -1,6 +1,6 @@
 import { useAuth } from "react-oidc-context";
 import React, { useState, useEffect } from 'react';
-import { Title, Table, Text, Button, Modal, TextInput, NumberInput} from '@mantine/core';
+import { Text, Button, Modal, } from '@mantine/core';
 import ProfileAccordion from '../components/profileAccordion';
 
 
@@ -45,11 +45,6 @@ function Profile() {
     const handlePlanNameChange = (event:any) => {
         setEditedPlanName(event.currentTarget.value)
     }
-
-    const formatDate = (dateString: string): string => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString(); // Or any other desired format
-    };
 
     return (
         <div>

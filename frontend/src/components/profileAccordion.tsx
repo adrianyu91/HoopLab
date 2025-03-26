@@ -1,5 +1,5 @@
 // profileAccordion.tsx
-import { Accordion, ActionIcon, AccordionControlProps, Center, Group, Table, Title, Text } from '@mantine/core';
+import { Accordion, ActionIcon, AccordionControlProps, Center, Table, Text } from '@mantine/core';
 import { IconDots } from '@tabler/icons-react';
 import React from 'react';
 import classes from './styles/profileAccoridion.module.css';
@@ -25,7 +25,6 @@ const ProfileAccordion: React.FC<AccordionProps> = ({ plan }) => {
         const date = new Date(dateString);
         return date.toLocaleDateString();
     };
-
 
     const rows = plan.workouts.map((workout: any) => (
         <Table.Tr key={workout.workoutID}>
