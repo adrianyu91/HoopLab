@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import bodyParser from 'body-parser';
 import { Redshift } from "aws-sdk";
 import contactRoute from "./routes/contact"; // Import the send-email route
+import planRoute from "./routes/plan";
 
 // Load environment variables
 dotenv.config();
@@ -171,6 +172,8 @@ app.get('/api/workoutPlan/user/:userId', async (req: Request, res: Response) => 
 
 // Send Email Route
 app.use("/contact", contactRoute); // Mount the contact route
+
+app.use('/plan', planRoute);
 
 // Start the server
 app.listen(PORT, () => {

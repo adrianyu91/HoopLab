@@ -19,7 +19,7 @@ function WorkoutPlanMenu({ userPlans, selectedPlan, onCreatePlan, onSelectPlan }
       <Menu.Dropdown>
         <MenuItem onClick={onCreatePlan}>Create New Plan</MenuItem> {/* Use prop */}
         {userPlans.map((plan) => (
-          <MenuItem key={plan.planId} onClick={() => onSelectPlan(plan)}> {/* Use prop */}
+          <MenuItem key={plan.planID} onClick={() => onSelectPlan(plan)}> {/* Use prop */}
             {plan.planName}
           </MenuItem>
         ))}
