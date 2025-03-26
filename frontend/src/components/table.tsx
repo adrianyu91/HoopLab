@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import cx from 'clsx';
 import {Checkbox, Group, ScrollArea, Table, Text } from '@mantine/core';
-import classes from './TableSelection.module.css';
+import classes from './styles/TableSelection.module.css';
 
     interface TableProps {
         data: any[];
@@ -31,7 +31,12 @@ import classes from './TableSelection.module.css';
     const rows = data.map((item) => {
         const selected = selection.includes(item);
         return (
-            <Table.Tr key={item.workoutID} className={cx({ [classes.rowSelected]: selected })}>
+            <Table.Tr 
+                key={item.workoutID} 
+                className={cx({ [classes.rowSelected]: selected })}
+                onClick={() => toggleRow(item)}
+                style={{ cursor: 'pointer' }}
+            >
                 <Table.Td>
                     <Checkbox checked={selected} onChange={() => toggleRow(item)} />
                 </Table.Td>
