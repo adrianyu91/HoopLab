@@ -24,7 +24,7 @@ const Workout: React.FC = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/workouts');
+        const response = await fetch('http://localhost:5000/workout');
         const data = await response.json();
         setWorkouts(data);
       } catch (error) {

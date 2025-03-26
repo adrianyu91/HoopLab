@@ -1,32 +1,20 @@
-import express, { Request, Response } from 'express';
-import { DynamoDBClient, ScanCommand } from '@aws-sdk/client-dynamodb';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import express, { Request, Response } from "express";
+import { ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { docClient } from "../config/dynamoDB"; // Import the DynamoDB client
 
 const router = express.Router();
 
-const dynamoDBClient = new DynamoDBClient({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
-});
-
-router.get('/workouts', async (req: Request, res: Response) => {
-  const params = {
-    TableName: process.env.DYNAMODB_TABLE!,
-  };
-
+router.get("/", async (req: Request, res: Response) => {
+  const command = new ScanCommand({ 
+    TableName: process.env.DYNAMODB_TABLE!
+   });
   try {
-    const command = new ScanCommand(params);
-    const response = await dynamoDBClient.send(command);
-    console.log('Successfully fetched data from DynamoDB:', response.Items);
+    
+    const response = await docClient.send(command);
     res.json(response.Items); // Return the fetched items
   } catch (error) {
-    console.error('Error fetching data from DynamoDB:', error);
-    res.status(500).json({ error: 'Failed to fetch data' });
+    console.error("Error fetching data from DynamoDB:", error);
+    res.status(500).json({ error: "Failed to fetch data" });
   }
 });
 
