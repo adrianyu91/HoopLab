@@ -3,12 +3,12 @@ import cx from 'clsx';
 import {Checkbox, Group, ScrollArea, Table, Text } from '@mantine/core';
 import classes from './styles/TableSelection.module.css';
 
-    interface TableProps {
-        data: any[];
-        onSelectionChange: (selectedRows: any[]) => void; // Changed type to any[]
-    }
+interface TableProps {
+    data: any[];
+    onSelectionChange: (selectedRows: any[]) => void; // Changed type to any[]
+}
 
-    const TableSelection: React.FC<TableProps> = ({ data, onSelectionChange }) => {
+const TableSelection: React.FC<TableProps> = ({ data, onSelectionChange }) => {
     const [selection, setSelection] = useState<any[]>([]); // Changed type to any[]
 
     const toggleRow = (item: any) => {

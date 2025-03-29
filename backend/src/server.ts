@@ -10,7 +10,7 @@ import { Redshift } from "aws-sdk";
 import contactRoute from "./routes/contact"; // Import the send-email route
 import workoutsRoute from "./routes/workouts";
 import workoutPlanRoute from "./routes/workoutPlan";
-
+import planRoute from "./routes/plan";
 
 // Load environment variables
 dotenv.config();
@@ -57,6 +57,8 @@ app.use("/api/workoutPlan", workoutPlanRoute);
 
 // Send Email Route
 app.use("/contact", contactRoute); // Mount the contact route
+
+app.use('/plan', planRoute);
 
 // Start the server
 app.listen(PORT, () => {

@@ -88,10 +88,14 @@ const Workout: React.FC = () => {
     console.log(selectedWorkouts);
     try {
         const workoutsToAdd = selectedWorkouts.map(workout => ({
-            workoutId: workout.workoutID, // Assuming your workout object has an ID
+            workoutId: workout.workoutID,
             workoutName: workout.workoutName,
             sets: workout.sets,
             reps: workout.reps,
+            description: workout.description,
+            videoURL: workout.videoURL,
+            category: workout.category,
+            notes: ""
           }));
 
       const response = await fetch('http://localhost:5000/api/workoutPlan/addWorkouts', {
