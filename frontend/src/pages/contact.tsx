@@ -88,75 +88,77 @@ export function Contact() {
   ));
 
   return (
-    <div className={classes.wrapper}>
-      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={50}>
-        <div>
-          <Title className={classes.title}>Contact us</Title>
-          <Text className={classes.description} mt="sm" mb={30}>
-            Leave your email and we will get back to you within 24 hours
-          </Text>
+    <div className={classes.outerWrapper}>
+      <div className={classes.wrapper}>
+        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={50}>
+          <div>
+            <Title className={classes.title}>Contact us</Title>
+            <Text className={classes.description} mt="sm" mb={30}>
+              Leave your email and we will get back to you within 24 hours
+            </Text>
 
-          <ContactIconsList />
+            <ContactIconsList />
 
-          <Group mt="xl">{icons}</Group>
-        </div>
-        <div className={classes.form}>
-          {showSuccess && (
-            <div className={classes.successMessage}>
-              Message sent successfully!
-            </div>
-          )}
-          <TextInput
-            label="Email"
-            placeholder="your@email.com"
-            required
-            value = {email}
-            onChange={(event) => setEmail(event.currentTarget.value)}
-            error={emailError || undefined}
-            classNames={{
-              input: `${classes.input} ${emailError ? classes.errorInput : ''}`,
-              label: classes.inputLabel,
-            }}
-          />
-          <TextInput
-            label="Name"
-            placeholder="John Doe"
-            mt="md"
-            required
-            value = {name}
-            onChange={(event) => setName(event.currentTarget.value)}
-            error={nameError ? 'Name is required' : undefined}
-            classNames={{
-              input: `${classes.input} ${nameError ? classes.errorInput : ''}`,
-              label: classes.inputLabel,
-            }}
-          />
-          <Textarea
-            required
-            label="Comment"
-            placeholder="Leave your comments here"
-            minRows={4}
-            mt="md"
-            value = {comment}
-            onChange={(event) => setComment(event.currentTarget.value)}
-            error={commentError ? 'Comment is required' : undefined}
-            classNames={{
-              input: `${classes.input} ${commentError ? classes.errorInput : ''}`,
-              label: classes.inputLabel,
-            }}
-          />
+            <Group mt="xl">{icons}</Group>
+          </div>
+          <div className={classes.form}>
+            {showSuccess && (
+              <div className={classes.successMessage}>
+                Message sent successfully!
+              </div>
+            )}
+            <TextInput
+              label="Email"
+              placeholder="your@email.com"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.currentTarget.value)}
+              error={emailError || undefined}
+              classNames={{
+                input: `${classes.input} ${emailError ? classes.errorInput : ''}`,
+                label: classes.inputLabel,
+              }}
+            />
+            <TextInput
+              label="Name"
+              placeholder="John Doe"
+              mt="md"
+              required
+              value={name}
+              onChange={(event) => setName(event.currentTarget.value)}
+              error={nameError ? 'Name is required' : undefined}
+              classNames={{
+                input: `${classes.input} ${nameError ? classes.errorInput : ''}`,
+                label: classes.inputLabel,
+              }}
+            />
+            <Textarea
+              required
+              label="Comment"
+              placeholder="Leave your comments here"
+              minRows={4}
+              mt="md"
+              value={comment}
+              onChange={(event) => setComment(event.currentTarget.value)}
+              error={commentError ? 'Comment is required' : undefined}
+              classNames={{
+                input: `${classes.input} ${commentError ? classes.errorInput : ''}`,
+                label: classes.inputLabel,
+              }}
+            />
 
-          <Group justify="flex-end" mt="md">
-            <Button 
-              className={classes.control}
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Send message'}
-            </Button>
-          </Group>
-        </div>
-      </SimpleGrid>
+            <Group justify="flex-end" mt="md">
+              <Button
+                className={classes.control}
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send message'}
+              </Button>
+            </Group>
+          </div>
+        </SimpleGrid>
+      </div>
     </div>
   );
 }

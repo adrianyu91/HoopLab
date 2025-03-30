@@ -1,11 +1,5 @@
 import { useAuth } from 'react-oidc-context';
 
-
-
-
-
-  
-
 function LogButton(){
     const auth = useAuth();
     const signOutRedirect = () => {

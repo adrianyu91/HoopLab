@@ -43,19 +43,21 @@ function Header() {
     ));
 
     return (
-    <header className={classes.header}>
-        <Container size="100%" className={classes.inner}>
-            <div className={classes.logo}>    
-                <Image src={Logo} alt="HoopLab Logo" width="auto" height="150" fit="contain"/>
-            </div>
-            <Group gap={20} visibleFrom="xs" className={classes.navItems}>
-                {items}
-            </Group>
-            <LogButton />
+    <div className={classes.container}>
+        <header className={classes.header}>
+            <Container size="100%" className={classes.inner}>
+                <div className={classes.logo}>    
+                    <Image src={Logo} alt="HoopLab Logo" width="auto" height="150" fit="contain"/>
+                </div>
+                <Group gap={20} visibleFrom="xs" className={classes.navItems}>
+                    {items}
+                </Group>
+                <LogButton />
 
-            <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
-        </Container>
-    </header>
+                <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+            </Container>
+        </header>
+    </div>
     );
 }
 

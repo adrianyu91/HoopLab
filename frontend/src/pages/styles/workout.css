@@ -1,0 +1,60 @@
+/* workout.css */
+
+
+
+/* Style the container */
+.workout-container {
+    padding: 40px;
+  }
+  
+  /* Style the title */
+  .workout-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Align filters and workout plan menu */
+  .filter-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the table title */
+  .table-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Style the button */
+  .add-to-plan-button {
+    margin-top: 20px;
+  }
+  
+  /* Style the table */
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-container th,
+  .table-container td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table-container th {
+    font-weight: bold;
+  }
+  
+  .table-container tr:hover {
+  }

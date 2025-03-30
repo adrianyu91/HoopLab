@@ -4,6 +4,7 @@ import TableSelection from '../components/table';
 import { Group, Button } from '@mantine/core';
 import { useAuth } from 'react-oidc-context';
 import WorkoutPlanMenu from '../components/workoutPlanMenu';
+import './styles/workout.css';
 
 const Workout: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
@@ -158,9 +159,9 @@ const Workout: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Workouts</h2>
-      <Group>
+    <div className="workout-container">
+      <h2 className="workout-title">Workouts</h2>
+      <div className="filter-group">
         <Select
           options={['Beginner', 'Intermediate', 'Advanced', 'Professional']}
           label="Select Levels"
@@ -173,30 +174,27 @@ const Workout: React.FC = () => {
           placeholder="Click here to select categories"
           onChange={(category) => setSelectedCategory(category)}
         />
-
         <WorkoutPlanMenu
           userPlans={userPlans}
           selectedPlan={selectedPlan}
-          onCreatePlan={handleCreatePlan} // Pass the create function
-          onSelectPlan={handlePlanSelect}  // Pass the select function
+          onCreatePlan={handleCreatePlan}
+          onSelectPlan={handlePlanSelect}
         />
-
-
-      </Group>
-      <h3>Our Workouts</h3>
-
-
-      <TableSelection
-            data={filteredWorkouts}
-            onSelectionChange={handleWorkoutSelectionChange}
+      </div>
+      <h3 className="table-title">Our Workouts</h3>
+      <div className="table-container">
+        <TableSelection
+          data={filteredWorkouts}
+          onSelectionChange={handleWorkoutSelectionChange}
         />
-
-
-      <Button onClick={handleAddToPlan} disabled={!selectedPlan || selectedWorkouts.length === 0}>
+      </div>
+      <Button
+        className="add-to-plan-button"
+        onClick={handleAddToPlan}
+        disabled={!selectedPlan || selectedWorkouts.length === 0}
+      >
         Add to Plan
       </Button>
-
-
     </div>
   );
 };

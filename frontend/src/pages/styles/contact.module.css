@@ -1,10 +1,37 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;  /* Optional: Ensures the body takes up the full height */
+  width: 100%; /* Optional: Ensures the body takes up the full width */
+  box-sizing: border-box; /* Consistent box model behavior */
+}
+
+
+.outerWrapper {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: calc(100dvh - 60px); /* Subtract navbar height (adjust as needed) */
+  width: 100%;
+  padding: 20px; /* Optional: Add padding for smaller screens */
+  box-sizing: border-box; /* Ensure padding doesn't affect width/height */
+
+  @media (max-width: 768px) {
+    .wrapper {
+      max-width: 90%; /* Reduce the width on smaller screens */
+      padding: 20px; /* Adjust padding for smaller screens */
+    }
+  }
+}
+
 .wrapper {
-  min-height: 400px;
+  max-width: 1000px; /* Optional: Limit the width */
+  width: 100%; /* Ensure it scales on smaller screens */
   background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
   border-radius: var(--mantine-radius-md);
   padding: calc(var(--mantine-spacing-xl) * 2.5);
-  margin-left: 2%; /* Adds space on the left */
-  margin-right: 2%; /* Adds space on the right */
+  margin: 0; /* Remove any extra margins */
+  box-sizing: border-box; /* Ensure padding doesn't affect width/height */
 
   @media (max-width: 768px) {
     padding: 0 3%; /* Slightly less padding for smaller screens */
