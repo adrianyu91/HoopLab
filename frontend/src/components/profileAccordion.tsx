@@ -3,7 +3,7 @@ import { Accordion, ActionIcon, AccordionControlProps, Center, Table, Text, Text
 // Import IconTrash
 import { IconPencil, IconCheck, IconX, IconTrash } from '@tabler/icons-react';
 import React, { useState, useEffect } from 'react';
-import classes from './styles/profileAccoridion.module.css';
+import classes from './styles/profileAccordion.module.css';
 
 
 interface AccordionProps {
