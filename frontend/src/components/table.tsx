@@ -60,7 +60,7 @@ const TableSelection: React.FC<TableProps> = ({ data, onSelectionChange }) => {
             <Table.Td>{item.category}</Table.Td>
             <Table.Td>{item.level}</Table.Td>
             <Table.Td>{item.description}</Table.Td>
-            <Table.Td>{item.videoURL}</Table.Td>
+            <Table.Td>{<a href={item.videoURL} target="_blank" rel="noopener noreferrer">View Example</a>}</Table.Td>
         </Table.Tr>
         );
     });

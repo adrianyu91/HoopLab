@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from '../components/multiselect';
 import TableSelection from '../components/table';
-import { Group, Button } from '@mantine/core';
+import { Button } from '@mantine/core';
 import { useAuth } from 'react-oidc-context';
 import WorkoutPlanMenu from '../components/workoutPlanMenu';
 import './styles/workout.css';
@@ -63,11 +63,7 @@ const Workout: React.FC = () => {
       }
     }
   };
-
-    useEffect(() => {
-        fetchUserPlans(false);
-    }, []);
-
+  
   const handleWorkoutSelectionChange = (selectedRows: string[]) => {
     setSelectedWorkouts(selectedRows);
   };

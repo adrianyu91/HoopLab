@@ -1,7 +1,5 @@
 /* workout.css */
 
-
-
 /* Style the container */
 .workout-container {
     padding: 40px;
@@ -39,29 +37,62 @@
   /* Style the table */
   .table-container {
     margin-top: 20px;
-  }
-  .table-container tr:hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6)); 
-    border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); 
-    box-shadow: var(--mantine-shadow-md); 
-    border-radius: var(--mantine-radius-md); 
-    transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; 
+    display: flex;
+    justify-content: center; /* Center the table */
   }
   
   .table-container table {
-    width: 100%;
+    width: 100%; /* Reduce the width of the table */
+    max-width: 90%; /* Limit the maximum width */
     border-collapse: collapse;
+    border: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same border color */
+    border-radius: var(--mantine-radius-md); /* Add rounded corners */
+    overflow: hidden; /* Ensure rounded corners work */
+    box-shadow: var(--mantine-shadow-sm); /* Add a subtle shadow */
+    margin: 0 auto; /* Center the table horizontally */
+  }
+  
+  /* Style table rows */
+  .table-container tr {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    border: 1px solid transparent;
+    position: relative;
+    z-index: 0;
+    transition: transform 150ms ease;
+  
+    &[data-active] {
+      transform: scale(1.03);
+      z-index: 1;
+      background-color: var(--mantine-color-body);
+      border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
+      box-shadow: var(--mantine-shadow-md);
+      border-radius: var(--mantine-radius-md);
+    }
+  }
+  /* Add hover effect for rows */
+  .table-container tr:hover {
+    background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same hover background color */
+    border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same hover border color */
+    box-shadow: var(--mantine-shadow-md); /* Keep the same hover shadow */
+    border-radius: var(--mantine-radius-md); /* Keep the same rounded corners */
+  }
+  
+  .table-container tr:last-child {
+    border-bottom: none; /* Remove the border for the last row */
   }
   
   .table-container th,
   .table-container td {
-    padding: 8px;
+    padding: 6px 12px; /* Reduce padding to make the table more compact */
     text-align: left;
+    font-size: 14px; /* Reduce font size */
   }
   
   .table-container th {
     font-weight: bold;
+    padding: 12px 12px; /* Increase padding for header */
   }
   
-  .table-container tr:hover {
+  .table-container td {
   }
+  
