@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from '../components/multiselect';
 import TableSelection from '../components/table';
-import { Button } from '@mantine/core';
+import { Button, Box, Group } from '@mantine/core';
 import { useAuth } from 'react-oidc-context';
 import WorkoutPlanMenu from '../components/workoutPlanMenu';
 import './styles/workout.css';
@@ -34,6 +34,7 @@ const Workout: React.FC = () => {
     };
 
     fetchWorkouts();
+    fetchUserPlans(false); 
   }, []);
 
   const filteredWorkouts = workouts.filter((workout: any) => {
@@ -157,7 +158,6 @@ const Workout: React.FC = () => {
 
   return (
     <div className="workout-container">
-      <h2 className="workout-title">Workouts</h2>
       <div className="filter-group">
         <Select
           options={['Beginner', 'Intermediate', 'Advanced', 'Professional']}
@@ -171,27 +171,34 @@ const Workout: React.FC = () => {
           placeholder="Click here to select categories"
           onChange={(category) => setSelectedCategory(category)}
         />
-        <WorkoutPlanMenu
-          userPlans={userPlans}
-          selectedPlan={selectedPlan}
-          onCreatePlan={handleCreatePlan}
-          onSelectPlan={handlePlanSelect}
-        />
+        
       </div>
-      <h3 className="table-title">Our Workouts</h3>
-      <div className="table-container">
-        <TableSelection
-          data={filteredWorkouts}
-          onSelectionChange={handleWorkoutSelectionChange}
-        />
-      </div>
-      <Button
-        className="add-to-plan-button"
-        onClick={handleAddToPlan}
-        disabled={!selectedPlan || selectedWorkouts.length === 0}
-      >
-        Add to Plan
-      </Button>
+        <div className="table-container">
+          <TableSelection
+            data={filteredWorkouts}
+            onSelectionChange={handleWorkoutSelectionChange}
+          />
+        </div>
+          <Box
+            component="footer"
+            className = "workout-footer"
+          > 
+            <Group gap="md">
+              <Button
+                className="add-to-plan-button"
+                onClick={handleAddToPlan}
+                disabled={!selectedPlan || selectedWorkouts.length === 0}
+              >
+                Add to Plan
+              </Button>
+              <WorkoutPlanMenu
+                userPlans={userPlans}
+                selectedPlan={selectedPlan}
+                onCreatePlan={handleCreatePlan}
+                onSelectPlan={handlePlanSelect}
+              />
+            </Group>
+          </Box>
     </div>
   );
 };

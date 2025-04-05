@@ -1,8 +1,7 @@
-/* workout.css */
-
 /* Style the container */
 .workout-container {
     padding: 40px;
+    padding-bottom: 60px;
   }
   
   /* Style the title */
@@ -15,7 +14,7 @@
   /* Align filters and workout plan menu */
   .filter-group {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
@@ -29,27 +28,23 @@
     font-weight: bold;
   }
   
-  /* Style the button */
-  .add-to-plan-button {
-    margin-top: 20px;
-  }
   
   /* Style the table */
   .table-container {
     margin-top: 20px;
     display: flex;
-    justify-content: center; /* Center the table */
+    justify-content: center; 
   }
   
   .table-container table {
-    width: 100%; /* Reduce the width of the table */
-    max-width: 90%; /* Limit the maximum width */
+    width: 100%; 
+    max-width: 90%; 
     border-collapse: collapse;
-    border: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same border color */
-    border-radius: var(--mantine-radius-md); /* Add rounded corners */
-    overflow: hidden; /* Ensure rounded corners work */
-    box-shadow: var(--mantine-shadow-sm); /* Add a subtle shadow */
-    margin: 0 auto; /* Center the table horizontally */
+    border: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
+    border-radius: var(--mantine-radius-md); 
+    overflow: hidden; 
+    box-shadow: var(--mantine-shadow-sm); 
+    margin: 0 auto; 
   }
   
   /* Style table rows */
@@ -71,28 +66,44 @@
   }
   /* Add hover effect for rows */
   .table-container tr:hover {
-    background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same hover background color */
-    border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); /* Keep the same hover border color */
-    box-shadow: var(--mantine-shadow-md); /* Keep the same hover shadow */
-    border-radius: var(--mantine-radius-md); /* Keep the same rounded corners */
+    background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4)); 
+    border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
+    box-shadow: var(--mantine-shadow-md); 
+    border-radius: var(--mantine-radius-md);
   }
   
   .table-container tr:last-child {
-    border-bottom: none; /* Remove the border for the last row */
+    border-bottom: none; 
   }
   
   .table-container th,
   .table-container td {
-    padding: 6px 12px; /* Reduce padding to make the table more compact */
+    padding: 6px 12px; 
     text-align: left;
-    font-size: 14px; /* Reduce font size */
+    font-size: 14px;
   }
   
   .table-container th {
     font-weight: bold;
-    padding: 12px 12px; /* Increase padding for header */
+    padding: 12px 12px;
   }
   
-  .table-container td {
+  .workout-footer {
+    position: fixed;
+    bottom: 0;
+    max-width: 1611px;
+    left: 7%;  
+    right: 7%;
+    height: 60px;
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8));    
+    border-top: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+    z-index: 100; 
+    display: flex;
+    align-items: center; 
+    border-top-left-radius: var(--mantine-radius-lg);
+    border-top-right-radius: var(--mantine-radius-lg);
+    margin: 0 auto;
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
   }
   
