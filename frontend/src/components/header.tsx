@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Burger, Container, Group, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Logo from './Logo.png';
@@ -12,30 +10,29 @@ import LogButton from './logbutton';
 
 function Header() {
     const auth = useAuth();
+    const location = useLocation();
 
     let links = [
         { link: '/', label: 'Home' },
         { link: '/workout', label: 'Workout' },
         { link: '/contact', label: 'Contact' },
     ];
-    
-    
+
+
     if (!auth.isLoading && auth.isAuthenticated && auth.user?.profile.name) {
-    
+
         links = [...links, { link: `/user/${auth.user?.profile.name}`, label: auth.user.profile.name }]
-    
+
     }
     const [opened, { toggle }] = useDisclosure(false);
-    const [active, setActive] = useState(links[0].link);
 
     const items = links.map((link) => (
 
         <Link
             key={link.label}
-            to={link.link} 
+            to={link.link}
             className={classes.link}
-            data-active={active === link.link || undefined}
-            onClick={() => setActive(link.link)} 
+            data-active={location.pathname === link.link || undefined}
         >
             {link.label}
         </Link>
