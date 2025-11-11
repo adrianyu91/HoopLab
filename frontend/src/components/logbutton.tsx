@@ -7,7 +7,7 @@ function LogButton(){
             console.log("Signing out...");
             auth.removeUser()
             const clientId = "6ciq9qotdr1snk75j014hg6q49";
-            const logoutUri = "http://localhost:3000/";
+            const logoutUri = "https://hooplab-omega.vercel.app/";
             const cognitoDomain = "https://ca-central-12ndsdd4r9.auth.ca-central-1.amazoncognito.com";
             window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
         }
